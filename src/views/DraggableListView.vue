@@ -102,20 +102,24 @@ const dropHandler = (e: DragEvent) => {
 .draggable
   .head
     padding-bottom: 1rem
+
   .cols
     display: flex
     gap: 1rem
+
     .list
       max-width: 300px
       width: 300px
       padding: 1rem
       border: 1px solid #ccc
       border-radius: 4px
+
       .list-item
         border: 1px solid #ccc
         border-radius: 4px
         padding: 1rem
         margin-top: 1rem
+
       .list-item.dragging
         opacity: .5
         background-color: #ccc
@@ -125,6 +129,7 @@ const dropHandler = (e: DragEvent) => {
   .draggable
     .cols
       flex-wrap: wrap
+
       .list
         width: 100%
         max-width: 100%

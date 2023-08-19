@@ -7,9 +7,9 @@ import {links} from "./constants"
       <div class="brand">Drag n Drop</div>
       <div class="links">
         <router-link v-for="(link, index) in links"
-           :key="index"
-           :to="{name: link.to}"
-           active-class="active-link"
+                     :key="index"
+                     :to="{name: link.to}"
+                     active-class="active-link"
         >
           {{ link.name }}
         </router-link>
@@ -29,8 +29,10 @@ import {links} from "./constants"
 main
   max-width: 800px
   margin: 0 auto
+
 .content
   padding-block: 1rem
+
 .app-bar
   display: flex
   justify-content: space-between
@@ -90,6 +92,7 @@ footer
     gap: 1rem
     justify-items: start
     align-items: start
+
     .links
       flex-direction: column
       justify-items: start
