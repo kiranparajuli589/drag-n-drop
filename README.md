@@ -1,52 +1,24 @@
-# create-avatar
+# Drag-and-Drop Feature Exploration
+Welcome to an exploration of the versatile drag-and-drop feature provided by HTML5 and JavaScript.
 
-This template should help get you started developing with Vue 3 in Vite.
+Within this repository, you'll find a collection of simple yet illustrative examples showcasing the capabilities of drag-and-drop functionality.
 
-## Recommended IDE Setup
+## Examples
+### Complete the Lady
+Engage in an interactive experience where you can drag and drop elements to assemble and complete an image of a lady.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Draggable List
+Discover a user-friendly way to reorder and organize lists by effortlessly dragging and dropping list items.
 
-## Type Support for `.vue` Imports in TS
+### Puzzle (Work in Progress)
+Challenge yourself with a puzzle game that lets you manipulate puzzle pieces using drag-and-drop actions to form a complete image. This feature is a work in progress, promising even more engaging experiences soon.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### File Drop (Work in Progress)
+Experience the convenience of file uploading through drag-and-drop functionality. This feature is currently in development, with an aim to provide a seamless file upload experience.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Interactive Story Teller (Work in Progress)
+Immerse yourself in an evolving interactive narrative as you drag and drop story elements to shape the storyline. This feature is currently in the works, promising captivating storytelling in the near future.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Your engagement with these examples will shed light on the potential of drag-and-drop interactions. Each example aims to showcase the versatility and ease of use that this feature offers, enriching user experiences across various applications.
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Thank you for your interest in this exploration. Feel free to explore the examples and stay tuned for further developments and enhancements.
