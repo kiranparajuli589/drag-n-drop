@@ -22,6 +22,11 @@ const router = createRouter({
       path: "/draggable-list",
       name: "draggable-list",
       component: () => import("../views/DraggableListView.vue")
+    },
+    {
+      path: "/file-uploader",
+      name: "file-uploader",
+      component: () => import("../views/FileUploaderView.vue")
     }
   ]
 })
