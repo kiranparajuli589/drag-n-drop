@@ -18,12 +18,11 @@ Discover a user-friendly way to reorder and organize lists by effortlessly dragg
 ### Puzzle (Work in Progress)
 
 Challenge yourself with a puzzle game that lets you manipulate puzzle pieces using drag-and-drop actions to form a
-complete image. This feature is a work in progress, promising even more engaging experiences soon.
+complete image.
 
-### File Drop (Work in Progress)
+### File Drop
 
-Experience the convenience of file uploading through drag-and-drop functionality. This feature is currently in
-development, with an aim to provide a seamless file upload experience.
+Experience the convenience of file uploading through drag-and-drop functionality.
 
 ### Interactive Story Teller (Work in Progress)
 

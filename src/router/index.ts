@@ -27,6 +27,11 @@ const router = createRouter({
       path: "/file-uploader",
       name: "file-uploader",
       component: () => import("../views/FileUploaderView.vue")
+    },
+    {
+      path: "/puzzle",
+      name: "puzzle",
+      component: () => import("../views/PuzzleView.vue")
     }
   ]
 })

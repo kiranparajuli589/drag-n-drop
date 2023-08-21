@@ -9,4 +9,5 @@ export const links: Link[] = [
   {name: "Draggable List", to: "draggable-list"},
   {name: "File Uploader", to: "file-uploader"},
   {name: "About", to: "about"},
+  {name: "Puzzle", to: "puzzle"}
 ]
