@@ -7,23 +7,44 @@
       </p>
       <br>
       <button class="reset" @click="populatePuzzlePiecesArray">Reset</button>
+      <br><br>
+      <label for="cell-count-select">Select Dimensions: </label>
+      <select v-model="cellCount" class="cell-count-select"
+              id="cell-count-select"
+              @change="populatePuzzlePiecesArray"
+      >
+        <option value="9">3x3</option>
+        <option value="25">5x5</option>
+        <option value="49">7x7</option>
+      </select>
     </div>
-    <div class="playground">
+    <div class="playground"
+      :style="`width: ${Math.sqrt(cellCount) * 100}px`"
+    >
       <div class="piece"
-         v-for="(piece, index) in puzzlePieces"
-         :class="'piece-' + (index + 1)"
-         :key="piece"
+           v-for="(piece, index) in puzzlePieces"
+           :class="'piece-' + (index + 1)"
+           :key="piece"
       >
         {{ piece }}
       </div>
-      <div class="piece empty-piece piece-9" />
+      <div class="piece empty-piece"
+        :class="'piece-' + cellCount"
+      />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import {onMounted, ref, reactive, nextTick} from 'vue';
 
-const isCompleted = ref(false)
+interface AllowedDrag {
+  empty: number,
+  allowed: number[]
+}
+
+const cellCount = ref<number>(25)
+const isCompleted = ref<boolean>(false)
+const allowedDrag: AllowedDrag[] = reactive([])
 const puzzlePieces: number[] = reactive([])
 
 onMounted(() => {
@@ -32,31 +53,43 @@ onMounted(() => {
 
 const populatePuzzlePiecesArray = () => {
   puzzlePieces.length = 0
+  const limit  = cellCount.value - 1
 
-  for (let i = 1; i <= 8; i++) {
-    const random: number = Math.floor(Math.random() * 8) + 1
+  for (let i = 1; i <= limit; i++) {
+    const random: number = Math.floor(Math.random() * limit) + 1
     if (!puzzlePieces.includes(random)) {
       puzzlePieces.push(random)
     } else {
       i--
     }
   }
-  nextTick(() => {
-    initializeDragAndDrop()
+
+  nextTick(async () => {
+    await generateAllowedDrag(cellCount.value)
+    await initializeDragAndDrop()
   })
 }
 
-const allowedDrag = [
-  {empty: 1, allowed: [2, 4]},
-  {empty: 2, allowed: [1, 3, 5]},
-  {empty: 3, allowed: [2, 6]},
-  {empty: 4, allowed: [1, 5, 7]},
-  {empty: 5, allowed: [2, 4, 6, 8]},
-  {empty: 6, allowed: [3, 5, 9]},
-  {empty: 7, allowed: [4, 8]},
-  {empty: 8, allowed: [5, 7, 9]},
-  {empty: 9, allowed: [6, 8]}
-]
+const generateAllowedDrag = (cellCount: number) => {
+  allowedDrag.length = 0
+  const gridSize = Math.sqrt(cellCount);
+
+  for (let i = 1; i <= cellCount; i++) {
+    const allowed = [];
+
+    // Calculate row and column of current cell
+    const row = Math.floor((i - 1) / gridSize);
+    const col = (i - 1) % gridSize;
+
+    // Calculate allowed positions based on neighboring cells
+    if (row - 1 >= 0) allowed.push(i - gridSize);
+    if (row + 1 < gridSize) allowed.push(i + gridSize);
+    if (col - 1 >= 0) allowed.push(i - 1);
+    if (col + 1 < gridSize) allowed.push(i + 1);
+
+    allowedDrag.push({empty: i, allowed});
+  }
+}
 
 const removeEventsFromAllPieces = () => {
   const allPieces = document.querySelectorAll('.piece')
@@ -114,8 +147,8 @@ const onDragOver = (event: DragEvent) => {
   }
 }
 
-const getIndex = (classListString: string):number => {
-  const pieceIndexRegex = /\d/.exec(classListString)
+const getIndex = (classListString: string): number => {
+  const pieceIndexRegex = /\d+/.exec(classListString)
   return pieceIndexRegex ? Number(pieceIndexRegex[0]) : 0
 }
 
@@ -153,25 +186,42 @@ const checkIfPuzzleIsComplete = () => {
     attemptedSolution.push(piece.innerHTML)
   })
 
-  const actualSolution = ['1', '2', '3', '4', '5', '6', '7', '8', '']
-  if (attemptedSolution.join('') === actualSolution.join('')) {
+  const actualSolution = []
+  for (let i = 1; i <= cellCount.value - 1; i++) {
+    actualSolution.push(i.toString())
+  }
+  actualSolution.push('')
+
+  if (arraysEqual(attemptedSolution, actualSolution)) {
     alert('You solved the puzzle!')
     isCompleted.value = true
   }
   isCompleted.value = false
+}
+
+function arraysEqual(a:string[], b:string[]) {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+
+  for (let i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }
 </script>
 <style scoped lang=sass>
 .puzzle
   .head
     margin-bottom: 1rem
+    .reset
+      padding: .5rem 1rem
+    select
+      padding: .3rem
 
   .playground
     display: flex
     flex-wrap: wrap
     justify-content: start
-    width: 300px
-    height: 300px
     outline: 1px solid #000
 
     .piece
@@ -186,8 +236,8 @@ const checkIfPuzzleIsComplete = () => {
 
     .piece.dragging
       opacity: .5
+
     .piece[draggable="true"]
       cursor: move
-  .reset
-    padding: .5rem 1rem
+
 </style>

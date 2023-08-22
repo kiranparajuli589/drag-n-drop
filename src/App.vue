@@ -32,6 +32,7 @@ main
 
 .content
   padding-block: 1rem
+  padding-bottom: 4rem
 
 .app-bar
   display: flex

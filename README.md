@@ -15,7 +15,7 @@ Engage in an interactive experience where you can drag and drop elements to asse
 
 Discover a user-friendly way to reorder and organize lists by effortlessly dragging and dropping list items.
 
-### Puzzle (Work in Progress)
+### Puzzle
 
 Challenge yourself with a puzzle game that lets you manipulate puzzle pieces using drag-and-drop actions to form a
 complete image.
