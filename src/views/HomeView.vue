@@ -4,7 +4,11 @@ import {links} from "../constants"
 const linksWithoutHome = links.filter((link) => link.name !== "Home")
 </script>
 <template>
-  <div class="home center-content">
+  <div class="home">
+    <div class="site-title">Drag-n-Drop</div>
+    <div class="site-subtitle">
+      An exploration of the HTML5 Drag and Drop API with the beautiful Vue.js
+    </div>
     <div class="card-wrapper center-content">
       <div class="card center-content"
            v-for="link in linksWithoutHome"
@@ -28,6 +32,22 @@ const linksWithoutHome = links.filter((link) => link.name !== "Home")
   width: 100%
   padding: 1rem
 
+  .site-title
+    font-size: clamp(40px, 5vw, 75px)
+    font-weight: 700
+    text-align: center
+    margin-bottom: .5rem
+
+    background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff)
+    background-clip: initial
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+
+  .site-subtitle
+    text-align: center
+    margin-bottom: 3rem
+
+
   .card-wrapper
     flex-wrap: wrap
     gap: 1rem
@@ -47,6 +67,4 @@ const linksWithoutHome = links.filter((link) => link.name !== "Home")
       p
         color: #4caf50
         text-decoration: underline
-
-
 </style>

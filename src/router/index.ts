@@ -32,6 +32,11 @@ const router = createRouter({
       path: "/puzzle",
       name: "puzzle",
       component: () => import("../views/PuzzleView.vue")
+    },
+    {
+      path: "/generate-story",
+      name: "generate-story",
+      component: () => import("../views/GenerateStoryView.vue")
     }
   ]
 })

@@ -1,18 +1,30 @@
 <script setup lang="ts">
 import {links} from "./constants"
+import {useRouter} from "vue-router"
+
+const router = useRouter()
+
+const toHome = () => {
+  router.push({name: 'home'})
+}
 </script>
 <template>
   <main>
     <nav class="app-bar">
-      <div class="brand">Drag n Drop</div>
+      <div class="brand" @click="toHome()">Drag-n-Drop</div>
       <div class="links">
-        <router-link v-for="(link, index) in links"
-                     :key="index"
-                     :to="{name: link.to}"
-                     active-class="active-link"
+        <template
+            v-for="(link, index) in links"
+            :key="index"
         >
-          {{ link.name }}
-        </router-link>
+          <router-link
+              v-if="link.name !== 'Home'"
+              :to="{name: link.to}"
+                       active-class="active-link"
+          >
+            {{ link.name }}
+          </router-link>
+        </template>
       </div>
     </nav>
     <div class="content">
@@ -39,13 +51,18 @@ main
   justify-content: space-between
   align-items: center
   padding: 0 1rem
-  background-color: #333
   height: 48px
-  color: #fff
+  border-bottom: 1px solid black
 
   .brand
     font-size: 1.5rem
     font-weight: bold
+    cursor: pointer
+
+    background: -webkit-linear-gradient(315deg,#42d392 25%,#647eff)
+    background-clip: initial
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
 
   .links
     display: flex
@@ -54,15 +71,15 @@ main
     align-items: center
 
     a
-      color: #fff
+      color: #000
       text-decoration: none
 
       &:hover
-        color: #ccc
+        color: #119611
 
       &.active-link
-        color: #ccc
-        border-bottom: 2px solid #ccc
+        color: #119611
+        border-bottom: 2px solid #119611
 
 footer
   text-align: center
